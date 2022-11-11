@@ -1,0 +1,183 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+
+{% block scripts %}
+<script>
+    $(document).ready(function (){
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{graph_1.lable|safe}},
+                datasets: [{
+                    label: "{{graph_1.name.0}}",
+                    data: {{graph_1.data.0|safe}},
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)', 
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: "{{graph_1.name.1}}",
+                    data: {{graph_1.data.1|safe}},
+                    backgroundColor: [
+                        'rgba(166, 99, 132, 0.2)', 
+
+                    ],
+                    borderColor: [
+                        'rgba(166, 99, 132, 1)',
+
+                    ],
+                    borderWidth: 1
+                }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }); 
+    $(document).ready(function (){
+        var ctx = document.getElementById('myChart_2');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{graph_2.lable|safe}},
+                datasets: [{
+                    label: "{{graph_2.name.0}}",
+                    data: {{graph_2.data.0|safe}},
+                    backgroundColor: [
+                        'rgba(178, 222, 39, 0.2)', 
+                    ],
+                    borderColor: [
+                        'rgba(178, 222, 39, 1)',
+
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: "{{graph_2.name.1}}",
+                    data: {{graph_2.data.1|safe}},
+                    backgroundColor: [
+                        'rgba(13, 180, 185, 0.2)', 
+
+                    ],
+                    borderColor: [
+                        'rgba(13, 180, 185, 1)',
+
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: "{{graph_2.name.2}}",
+                    data: {{graph_2.data.2|safe}},
+                    backgroundColor: [
+                        'rgba(200, 99, 135, 0.2)', 
+
+                    ],
+                    borderColor: [
+                        'rgba(200, 99, 135, 1)',
+
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: "{{graph_2.name.3}}",
+                    data: {{graph_2.data.3|safe}},
+                    backgroundColor: [
+                        'rgba(255, 148, 112, 0.2)', 
+
+                    ],
+                    borderColor: [
+                        'rgba(255, 148, 112, 1)',
+
+                    ],
+                    borderWidth: 1
+                },
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock scripts %}
+
+{% block content %}
+
+
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="col-md-12 d-flex flex-row">
+            <img src="/static/assets/images/chart.png" width="85" height="90">
+            <div class="m-25 ">
+                <h3>Прогресс за месяц</32>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between m-25">
+            {% for key, value in nav.items %}
+                <div class="d-flex flex-column border ">
+                    <h5 class = "mb-1">{{key}}</h5>
+                    <h6 class = "mb-1">{{value}}</h6>
+                </div>
+                {% endfor %}
+        </div> 
+        <div class='col-md-12 d-flex '>
+            <form action="">
+                <span>Sort by:</span>
+                <select name="year" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    {% for i in year %}
+                        <option value="{{ i }}" name='year'>{{ i }}</option>
+                    {% endfor %}
+                </select>
+                <select name="mounth" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option value="1" name='mounth'>январь</option>
+                    <option value="2" name='mounth'>февраль</option>
+                    <option value="3" name='mounth'>март</option>
+                    <option value="4" name='mounth'>апрель</option>
+                    <option value="5" name='mounth'>май</option>
+                    <option value="6" name='mounth'>июнь</option>
+                    <option value="7" name='mounth'>июль</option>
+                    <option value="8" name='mounth'>август</option>
+                    <option value="9" name='mounth'>сентябрь</option>
+                    <option value="10" name='mounth'>октябрь</option>
+                    <option value="11" name='mounth'>ноябрь</option>
+                    <option value="12" name='mounth'>декабрь</option>
+                  </select>
+                <input type="submit" value="Sort">
+              </form>
+            
+
+        <div class='col-md-12 d-flex '>
+            <div class="col-md-10 ">
+                <div class="p-10">
+                    <canvas id="myChart" width="400" height="100"></canvas>
+                </div>
+                <div class="p-10">
+                    <canvas id="myChart_2" width="400" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
