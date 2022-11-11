@@ -30,6 +30,6 @@ apps/static/assets/yarn.lock
 apps/static/assets/.temp
 
 .env__
-
+.env
 
 asd.py
