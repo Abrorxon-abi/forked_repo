@@ -7,11 +7,113 @@
 
 
 
-
-
 {% block content %}
+<div class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="col-md-12 d-flex flex-row">
+            <img src="/static/assets/images/chart.png" width="85" height="90">
+            <div class="m-25">
+                <h3>История платижей</h3>
+            </div>
+        </div>
+        <div class='col-md-12 d-flex '>
+            <form action="">
+                <span>Sort by:</span><option value="0" select name='mounth'>Выберите ID:</option>
+                <select name="pagination" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option value="10" name='mounth'>10</option>
+                    <option value="20" name='mounth'>20</option>
+                    <option value="30" name='mounth'>30</option>
+                    <option value="40" name='mounth'>40</option>
+                </select>
+                <select name="id_transfer_s" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option value="" name='mounth' select>Выберите ID:</option>
+                    {% for i in id_t %}
+                        <option value="{{ i }}" name='mounth'>{{ i }}</option>
+                    {% endfor %}
 
+                </select>
+                <input type='number' name='id_transfer' placeholder="ID Транзакцы:" id = 'id_transfer'>
+                <span>Статус:</span>
+                <select name="status" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option value="" name='status' select >Выберите статус...</option>
+                    {% for i in status %}
+                    <option value="{{ i.id }}" name='status'>{{ i|title }}</option>
+                    {% endfor %}
+                </select>
+                <select name="year" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option value="" name='status' select >Выберите год:</option>
+                    {% for i in years %}
+                        <option value="{{ i }}" name='year'>{{ i }}</option>
+                    {% endfor %}
+                </select>
+                <select name="mounth" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option value="" name='status' select >Выберите месяц:</option>
+                    <option value="1" name='mounth'>январь</option>
+                    <option value="2" name='mounth'>февраль</option>
+                    <option value="3" name='mounth'>март</option>
+                    <option value="4" name='mounth'>апрель</option>
+                    <option value="5" name='mounth'>май</option>
+                    <option value="6" name='mounth'>июнь</option>
+                    <option value="7" name='mounth'>июль</option>
+                    <option value="8" name='mounth'>август</option>
+                    <option value="9" name='mounth'>сентябрь</option>
+                    <option value="10" name='mounth'>октябрь</option>
+                    <option value="11" name='mounth'>ноябрь</option>
+                    <option value="12" name='mounth'>декабрь</option>
+                </select>
+                <select name="day" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option value="" select name='day'>Выберите день:</option>
+                    {% for i in mounth %} 
+                        <option value="{{ i }}" name='mounth'>{{ i }}</option>
+                    {% endfor %} 
+                </select>
+                <input type="submit" value="Sort">
+            </form>
+        </div>
 
+    </div>
+
+        <!-- [ Hover-table ] start -->
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Hover Table</h5>
+                    <span class="d-block m-t-5">use class <code>table-hover</code> inside table element</span>
+                </div>
+                <div class="card-block table-border-style">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Транзакця:</th>
+                                    <th>Поставщик:</th>
+                                    <th>Тр. Поставщика:</th>
+                                    <th>Время:</th>
+                                    <th>Сумма:</th>
+                                    <th>Комисся:</th>
+                                    <th>Платежная система:</th>
+                                    <th>Статус:</th>
+                                    <th>Статус:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in status %}
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ Hover-table ] end -->
+
+</div>    
 
 
 

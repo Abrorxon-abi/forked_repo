@@ -82,6 +82,7 @@ class Payment(models.Model):
     sum = models.PositiveIntegerField( )
     details = models.CharField( max_length = 256 )
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
+    
     class Meta:
         verbose_name = ( "Платеж ")
         verbose_name_plural = ("Платежи ")

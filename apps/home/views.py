@@ -3,8 +3,9 @@ from django import template
 from django.urls import reverse
 from django.template import loader
 from django.shortcuts import render
-from .function.dates import (dates, date_for_filter, year)
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from .function.dates import (dates, date_for_filter, year, mounth)
 from django.http import HttpResponse, HttpResponseRedirect
 from .function.graphs import (graph_1_paymant, graph_2_paymant, graph_1_transfer, graph_2_transfer)
 
@@ -95,11 +96,28 @@ def transfers(request):
 
 @login_required(login_url="/login/")
 def pay_history(request):
+    sort_by = request.GET
+    if sort_by:
+        if sort_by['id_transfer_s'] == '0' and sort_by['id_transfer'] != '':
+            p_res = Payment.objects.filter(id = int(sort_by['id_transfer']))
+            p = Paginator(p_res, 1)
+            page = p.page(1)
+        elif sort_by['status'] != '':
+            p_res = Payment.objects.filter(status__id = int(sort_by['status']))
+            p = Paginator(p_res, int(sort_by['pagination']))
+            page = p.page(1)
 
-    
+    else:
+        p_res = Payment.objects.all().order_by('-created_at')
+        p = Paginator(p_res, 10)
+        page = p.page(1)
 
+    id_t = [x.id for x in list(p_res.reverse())]
 
-    data = {}
+    status_res = Status.objects.all()
+    years = year( x = Payment.objects.first() )
+
+    data = {'status':status_res, 'years':years, 'mounth':mounth(), 'id_t':id_t}
     return render(request, 'home/payment_history.html', context=data)
     
 

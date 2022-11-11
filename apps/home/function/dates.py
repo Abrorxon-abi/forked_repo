@@ -1,4 +1,5 @@
 from datetime import date, datetime, timedelta
+from calendar import monthrange
 
 
 
@@ -33,5 +34,15 @@ def year(x):
         data.append(year)
     
     return data
+
+
+def mounth():
+    current_year = datetime.now().year
+    current_mounth = datetime.now().month
+    day = monthrange(current_year, current_mounth)[1]
+    days = [i for i in range(1, day+1)]
+
+    return days
+
 
     
