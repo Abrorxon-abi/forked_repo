@@ -27,7 +27,6 @@ Copyright (c) 2019 - present [AppSeed](http://appseed.us/)
 | Separate sale of our UI Elements | NO |
 
 <br />
-<br />
 
-----
+---
 For more information regarding licensing, please contact the AppSeed Service < *support@appseed.us* >
